@@ -61,7 +61,7 @@ Public Class Main
                         End Using
                     Next
                 End Using
-                '    File.Delete(FileTextBox.Text)
+                File.Delete(FileTextBox.Text)
             Catch
             End Try
         Else
