@@ -83,7 +83,7 @@ Partial Class Main
         '
         Me.SplitSize.Location = New System.Drawing.Point(76, 50)
         Me.SplitSize.Maximum = New Decimal(New Integer() {128000, 0, 0, 0})
-        Me.SplitSize.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.SplitSize.Minimum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.SplitSize.Name = "SplitSize"
         Me.SplitSize.Size = New System.Drawing.Size(60, 20)
         Me.SplitSize.TabIndex = 4
