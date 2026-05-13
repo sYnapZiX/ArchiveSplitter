@@ -24,7 +24,11 @@ Public Class Main
             Dim SplitSizeInMB As ULong = SplitSize.Value * 1024000
             Try
                 Dim FileLength As ULong = New FileInfo(FileTextBox.Text).Length
-                ProgressBar.Maximum = FileLength
+                Try
+                    ProgressBar.Maximum = FileLength
+                Catch
+                    ProgressBar.Maximum = Integer.MaxValue
+                End Try
                 Application.DoEvents()
                 Using FileReader As New StreamReader(FileTextBox.Text, Encoding.Default)
                     For i = 1 To Integer.MaxValue
@@ -34,13 +38,21 @@ Public Class Main
                                 FileReader.Read(ContentBuffer, 0, SplitSizeInMB)
                                 FileWriter.Write(New String(ContentBuffer))
                                 FileLength -= SplitSizeInMB
-                                ProgressBar.Value += SplitSizeInMB
+                                Try
+                                    ProgressBar.Value += SplitSizeInMB
+                                Catch
+                                    ProgressBar.Value = ProgressBar.Maximum
+                                End Try
                                 Application.DoEvents()
                             Else
                                 Dim ContentBuffer(FileLength - 1) As Char
                                 FileReader.Read(ContentBuffer, 0, FileLength)
                                 FileWriter.Write(New String(ContentBuffer))
-                                ProgressBar.Value += FileLength
+                                Try
+                                    ProgressBar.Value += FileLength
+                                Catch
+                                    ProgressBar.Value = ProgressBar.Maximum
+                                End Try
                                 Application.DoEvents()
                                 Exit For
                             End If
@@ -49,7 +61,7 @@ Public Class Main
                         End Using
                     Next
                 End Using
-                File.Delete(FileTextBox.Text)
+                '    File.Delete(FileTextBox.Text)
             Catch
             End Try
         Else
@@ -60,7 +72,11 @@ Public Class Main
                     If File.Exists(FileName & ".s" & i.ToString("000")) Then
                         Dim FileLength As ULong = New FileInfo(FileName & ".s" & i.ToString("000")).Length
                         ProgressBar.Value = 0
-                        ProgressBar.Maximum = FileLength
+                        Try
+                            ProgressBar.Maximum = FileLength
+                        Catch
+                            ProgressBar.Maximum = Integer.MaxValue
+                        End Try
                         ProgressBar.Visible = True
                         Application.DoEvents()
                         If i = 1 Then
@@ -74,7 +90,11 @@ Public Class Main
                             FileWriter.Close()
                         End Using
                         File.Delete(FileName & ".s" & i.ToString("000"))
-                        ProgressBar.Value = FileLength
+                        Try
+                            ProgressBar.Value = FileLength
+                        Catch
+                            ProgressBar.Value = ProgressBar.Maximum
+                        End Try
                         Application.DoEvents()
                     Else
                         Exit For

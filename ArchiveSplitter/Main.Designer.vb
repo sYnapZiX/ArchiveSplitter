@@ -82,13 +82,13 @@ Partial Class Main
         'SplitSize
         '
         Me.SplitSize.Location = New System.Drawing.Point(76, 50)
-        Me.SplitSize.Maximum = New Decimal(New Integer() {128000, 0, 0, 0})
+        Me.SplitSize.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         Me.SplitSize.Minimum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.SplitSize.Name = "SplitSize"
         Me.SplitSize.Size = New System.Drawing.Size(60, 20)
         Me.SplitSize.TabIndex = 4
         Me.SplitSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.SplitSize.Value = New Decimal(New Integer() {2000, 0, 0, 0})
+        Me.SplitSize.Value = New Decimal(New Integer() {500, 0, 0, 0})
         '
         'SplitMBLabel
         '
